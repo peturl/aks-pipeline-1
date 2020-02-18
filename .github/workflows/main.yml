@@ -16,3 +16,4 @@ jobs:
     
     - run: |
         az group create -l westeurope -n actions-rg #
+        az group list
