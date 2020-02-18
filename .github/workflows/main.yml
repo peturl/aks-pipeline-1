@@ -1,15 +1,18 @@
-name: CI
+# File: .github/workflows/workflow.yml
 
 on: [push]
 
+name: AzureLoginSample
+
 jobs:
-  test:
 
+  build-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Azure Login
-      uses: Azure/login@v1
+    
+    - uses: azure/login@v1
       with:
-        # Paste output of `az ad sp create-for-rbac` as value of secret variable: AZURE_CREDENTIALS
-        creds: 
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+    
+    - run: |
+        az webapp list --query "[?state=='Running']"
