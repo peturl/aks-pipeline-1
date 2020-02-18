@@ -5,15 +5,13 @@ on: [push]
 name: AzureLoginSample
 
 jobs:
-
   build-and-deploy:
     runs-on: ubuntu-latest
-    steps:
-    
+    steps:  
     - uses: azure/login@v1
       with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
-    
+        creds: ${{ secrets.AZURE_CREDENTIALS }} 
     - run: |
-        az group create -l westeurope -n actions-rg #
-        az aks create -g actions-rg -n aks
+        az group create -l westeurope -n actions-rg 
+    - run: |
+        az aks create -g actions-rg -n aks --generate-ssh-certificates
