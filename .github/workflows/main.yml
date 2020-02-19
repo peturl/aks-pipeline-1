@@ -18,5 +18,6 @@ jobs:
         creds: ${{ secrets.AZURE_CREDENTIALS }} 
     - run: |
         az group create -l westeurope -n actions-rg 
+      working-directory: ./
     - run: |
         az group deployment create -n test -g actions-rg --template-file template.json --parameters params.json
