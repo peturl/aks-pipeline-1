@@ -21,4 +21,4 @@ jobs:
         az group create -l westeurope -n actions-rg
     - run: |
         az group deployment create -n test -g actions-rg --template-file template.json --parameters params.json
-      working-directory: ./arm-templates
+      working-directory: arm-templates
