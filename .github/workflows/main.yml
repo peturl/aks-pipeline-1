@@ -4,20 +4,23 @@
 on: [push]
 
 env:
-  AZURE_RESOURCE_GROUP: action-rg
-  AZURE_TEMPLATE_FILE: template.json
-  AZURE_PARAMETERS_FILE: params.jaon
+  AZURE_RESOURCE_GROUP: action-rg2
+  ARM_TEMPLATE_FILE: template.json
+  ARM_PARAMETERS_FILE: params.jaon
 
 name: AzureARMTest
 
 jobs:
-  build-and-deploy:
+  build-infra:
     runs-on: ubuntu-latest
-    steps:  
+    steps: 
+    # Azure login   
     - uses: azure/login@v1
       with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }} 
-    - run: az group create -l westeurope -n actions-rg
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+    # Create Resource Group
+    - run: az group create -l westeurope -n ${{ env.AZURE_RESOURCE_GROUP }}
+    # Check out code and create AKS cluster using ARM templates
     - uses: actions/checkout@v1 
-    - run: az group deployment create -n test -g actions-rg --template-file template.json --parameters params.json
+    - run: az group deployment create -n test -g ${{ env.AZURE_RESOURCE_GROUP }} --template-file ${{ env.ARM_TEMPLATE_FILE }} --parameters ${{ env.ARM_PARAMETER_FILE }}
       working-directory: ./arm-templates
