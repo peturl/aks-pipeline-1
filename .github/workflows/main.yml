@@ -6,7 +6,7 @@ on: [push]
 env:
   AZURE_RESOURCE_GROUP: action-rg2
   ARM_TEMPLATE_FILE: template.json
-  ARM_PARAMETERS_FILE: params.jaon
+  ARM_PARAMETERS_FILE: params.json
 
 name: AzureARMTest
 
