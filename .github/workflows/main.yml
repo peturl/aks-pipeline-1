@@ -2,7 +2,12 @@
 
 on: [push]
 
-name: AzureLoginSample
+env:
+  AZURE_RESOURCE_GROUP: action-rg
+  AZURE_TEMPLATE_FILE: template.json
+  AZURE_PARAMETERS_FILE: params.jaon
+
+name: AzureARMTest
 
 jobs:
   build-and-deploy:
@@ -14,4 +19,4 @@ jobs:
     - run: |
         az group create -l westeurope -n actions-rg 
     - run: |
-        az group deployment create -g actions-rg --template-file ../template.json
+        az group deployment create -n test -g actions-rg --template-file template.json --parameters params.json
