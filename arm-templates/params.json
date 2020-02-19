@@ -26,7 +26,7 @@
             "value": 3
         },
         "kubernetesVersion": {
-            "value": "1.14.8"
+            "value": "1.15.7"
         },
         "servicePrincipalClientSecret": {
             "reference": {
