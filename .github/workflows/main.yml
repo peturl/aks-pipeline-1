@@ -14,4 +14,4 @@ jobs:
     - run: |
         az group create -l westeurope -n actions-rg 
     - run: |
-        az group deployment create -g actions-rg --template-file template.json
+        az group deployment create -g actions-rg --template-file ../template.json
