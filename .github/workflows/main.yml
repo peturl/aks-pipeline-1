@@ -14,4 +14,4 @@ jobs:
     - run: |
         az group create -l westeurope -n actions-rg 
     - run: |
-        az aks create -g actions-rg -n aks --generate-ssh-keys
+        az group deployment create -g actions-rg --template-uri template.json --parameters parameters.json
